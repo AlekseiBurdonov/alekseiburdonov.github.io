@@ -29,26 +29,18 @@
 
       <div class="row">
       	<div class="col-sm-4">
-      		<form action="telegram.php" method="POST">
-      			<legend>Заголовок формы</legend>
-
-      			<div class="form-group">
-      				<label for="">Введите ваше имя</label>
-      				<input type="text" class="form-control" id="" name="user_name" placeholder="Например, Иван">
-      			</div>
-      		
-      			<div class="form-group">
-      				<label for="">Введите номер телефона</label>
-      				<input type="text" class="form-control" id="" name="user_phone" placeholder="+7 (999) 99 99 999">
-      			</div>
-      		
-      			<div class="form-group">
-      				<label for="">Введите email</label>
-      				<input type="text" class="form-control" id="" name="user_email" placeholder="mail@mail.ru">
-      			</div>
-      		
-      			<button type="submit" class="btn btn-primary">Отправить форму</button>
-      		</form>
+      		<form class="form" method="post" action="/send.php">
+	<div class="form__item">
+		<input class="form__input" type="text" name="name" required>
+		<label class="form__label">Ваше имя</label>
+	</div>
+	<div class="form__item">
+		<input class="form__input" type="text" name="phone" required>
+		<label class="form__label">Номер телефона</label>
+	</div>
+	<input class="form__input btn" type="submit" value="Отправить">
+	<input type="hidden" name="act" value="order">
+</form>
       	</div><!-- .col-sm-4 -->
       </div> <!-- .row -->
 
