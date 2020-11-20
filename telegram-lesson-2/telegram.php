@@ -1,28 +1,39 @@
 <?php
 
-/* https://api.telegram.org/bot1438888329:AAGhGl-U-mq0PZWgQ9w_ybjNdCQ2AZLdJ-I/getUpdates,
-где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее */
+//В переменную $token нужно вставить токен, который нам прислал @botFather
+$token = "1434397633:AAGeStvtGM6iLPO0-9CfwsyiP6uT7mQ01FU";
 
-$name = $_POST['user_name'];
-$phone = $_POST['user_phone'];
-$email = $_POST['user_email'];
-$token = "1438888329:AAGhGl-U-mq0PZWgQ9w_ybjNdCQ2AZLdJ-I";
-$chat_id = "-375696997";
-$arr = array(
-  'Имя пользователя: ' => $name,
-  'Телефон: ' => $phone,
-  'Email' => $email
-);
+//Сюда вставляем chat_id
+$chat_id = "-489760590";
 
-foreach($arr as $key => $value) {
-  $txt .= "<b>".$key."</b> ".$value."%0A";
-};
+//Определяем переменные для передачи данных из нашей формы
+if ($_POST['act'] == 'order') {
+    $name = ($_POST['name']);
+    $phone = ($_POST['phone']);
 
-$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
+//Собираем в массив то, что будет передаваться боту
+    $arr = array(
+        'Имя:' => $name,
+        'Телефон:' => $phone
+    );
 
-if ($sendToTelegram) {
-  echo "Спасибо!";
-} else {
-  echo "Error";
+//Настраиваем внешний вид сообщения в телеграме
+    foreach($arr as $key => $value) {
+        $txt .= "<b>".$key."</b> ".$value."%0A";
+    };
+
+//Передаем данные боту
+    $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
+
+//Выводим сообщение об успешной отправке
+    if ($sendToTelegram) {
+        alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.');
+    }
+
+//А здесь сообщение об ошибке при отправке
+    else {
+        alert('Что-то пошло не так. ПОпробуйте отправить форму ещё раз.');
+    }
 }
-?> */
+
+?>
